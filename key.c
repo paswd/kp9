@@ -52,6 +52,10 @@ char key_get_sym(Key *key, int i)
 int key_compare(Key *key1, Key *key2)
 {
 	for (int i = 0; i < KEY_LEN; i++) {
+		//printf("---\n");
+		//printf("%c:%c\n", key1->value[i], key2->value[i]);
+		//printf("%d:%d\n", key1->value[i], key2->value[i]);
+		//printf("___\n");
 		if (key1->value[i] > key2->value[i])
 			return 1;
 		if (key1->value[i] < key2->value[i])

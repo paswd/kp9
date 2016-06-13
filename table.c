@@ -82,11 +82,11 @@ void table_note_delete(Table *table, size_t pos)
 void table_sort(Table *table)
 {
 	bool is_changed;
-	size_t start = 1;
+	size_t end = table->size;
 	do {
 		is_changed = false;
 
-		for (size_t i = start; i < table->size; i++) {
+		for (size_t i = 1; i < end; i++) {
 			if (key_compare(table->note_arr[i - 1].key, table->note_arr[i].key) == 1) {
 				Key *tmp_key = table->note_arr[i - 1].key;
 				table->note_arr[i - 1].key = table->note_arr[i].key;
@@ -97,11 +97,12 @@ void table_sort(Table *table)
 				table->note_arr[i].data = tmp_data;
 
 				is_changed = true;
+
 			}
 		}
 
-		start++;
-	} while (is_changed && start < table->size);
+		end--;
+	} while (is_changed && end > 0);
 }
 
 void table_print(Table *table)
