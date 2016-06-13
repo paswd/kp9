@@ -32,7 +32,6 @@ Table *table_create(void)
 	table->space[i] = ' ';
 	table->space[i + 1] = '|';
 	table->space[i + 2] = ' ';
-	//table->space += " | ";
 	return table;
 }
 
