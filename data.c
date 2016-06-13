@@ -60,5 +60,4 @@ void data_print(Data *data, char *space)
 		if (data->value[i] == '\n')
 			printf("%s", space);
 	}
-	//printf("%s\n", data->value);
 }
