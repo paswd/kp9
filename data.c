@@ -33,6 +33,8 @@ void data_set_value_from_input(Data *data)
 		queue_push(queue, (long long) sym);
 		cnt++;
 	}
+	char end_data = '\0';
+	queue_push(queue, (long long) end_data);
 
 	data->value = (char *) calloc(cnt, sizeof(char));
 	data->length = cnt;

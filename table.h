@@ -13,8 +13,12 @@ Table *table_create(void);
 void table_destroy(Table **table);
 
 void table_push(Table *table);
-void table_note_delete(Table *table, size_t pos);
+void table_note_delete(Table *table, Key *key);
 void table_sort(Table *table);
+Note *table_search(Table *table, Key *key, size_t *pos);
+void table_clear(Table *table);
 void table_print(Table *table);
+void note_print(Table *table, Note *note);
+bool table_is_sorted(Table *table);
 
 #endif

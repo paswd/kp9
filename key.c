@@ -8,7 +8,7 @@
 #define KEY_LEN	5
 
 struct _key {
-	char value[KEY_LEN];
+	char value[KEY_LEN + 1];
 };
 
 int key_len(void)
@@ -35,6 +35,7 @@ void key_set_value_from_input(Key *key)
 	for (int i = 0; i < KEY_LEN; i++) { 
 		scanf("%c", key->value + i);
 	}
+	key->value[KEY_LEN] = '\0';
 }
 
 void key_print(Key *key)
