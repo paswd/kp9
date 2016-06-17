@@ -12,6 +12,7 @@ Key *key_create(void);
 void key_destroy(Key **key);
 
 void key_set_value_from_input(Key *key);
+void key_set_value(Key *key, char *str);
 void key_print(Key *key);
 char key_get_sym(Key *key, int i);
 int key_compare(Key *key1, Key *key2);

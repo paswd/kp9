@@ -24,6 +24,8 @@ Key *key_create(void)
 
 void key_destroy(Key **key)
 {
+	if (*key == NULL)
+		return;
 	free(*key);
 	*key = NULL;
 }
@@ -36,6 +38,15 @@ void key_set_value_from_input(Key *key)
 		scanf("%c", key->value + i);
 	}
 	key->value[KEY_LEN] = '\0';
+}
+
+void key_set_value(Key *key, char *str)
+{
+	for (int i = 0; i <= KEY_LEN; i++) {
+		key->value[i] = str[i];
+	}
+	if (key->value[KEY_LEN] != '\0')
+		key->value[KEY_LEN] = '\0';
 }
 
 void key_print(Key *key)

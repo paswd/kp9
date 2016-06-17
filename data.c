@@ -18,6 +18,8 @@ Data *data_create(void)
 }
 void data_destroy(Data **data)
 {
+	if ((*data) == NULL)
+		return;
 	free((*data)->value);
 	free(*data);
 	*data = NULL;
@@ -29,7 +31,7 @@ void data_set_value_from_input(Data *data)
 
 	char sym;
 	int cnt = 0;
-	while ((sym = getchar()) != EOF) {
+	while ((sym = getchar()) != '\n') {
 		queue_push(queue, (long long) sym);
 		cnt++;
 	}
@@ -43,6 +45,19 @@ void data_set_value_from_input(Data *data)
 
 	queue_destroy(&queue);
 }
+void data_set_value(Data *data, char *str)
+{
+	int end = 0;
+	while (str[end] != '\n' && end < 1023)
+		end++;
+
+	data->length = end + 1;
+	data->value = (char *) calloc(data->length, sizeof(char));
+	for (int i = 0; i < end; i++)
+		data->value[i] = str[i];
+
+	data->value[end] = '\0';
+}
 
 Data *data_clone(Data *data)
 {
@@ -55,11 +70,12 @@ Data *data_clone(Data *data)
 	return res;
 }
 
-void data_print(Data *data, char *space)
+void data_print(Data *data)
 {
-	for (size_t i = 0; i < data->length; i++) {
+	/*for (size_t i = 0; i < data->length; i++) {
 		printf("%c", data->value[i]);
 		if (data->value[i] == '\n')
 			printf("%s", space);
-	}
+	}*/
+	printf("%s\n", data->value);
 }
